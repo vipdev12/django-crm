@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Менеджеры</h3>
+<div>
+  <button onclick="window.location.href='{% url 'create-manager' %}'">Добавить</button>
+  <ul>
+<table class="table table-bordered table-light">
+  <thead>
+    <tr>
+      <th>ФИО</th>
+      <th>Телефон</th>
+      <th>Почта</th>
+      <th>Дата создания</th>
+      <th>Кол-во сделок</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for manager in managers %}
+      <tr>
+        <td>{{ manager.name }}</td>
+        <td>{{ manager.phone_number }}</td>
+        <td>{{ manager.email }}</td>
+        <td>{{ manager.date }}</td>
+        <td>{{ manager.quantity_sell }}</td>
+        <td>
+          <button class="btn btn-success" onclick="window.location.href='{% url 'update-manager' manager.pk %}'">Изменить</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" onclick="window.location.href='{% url 'delete-manager' manager.pk %}'">Удалить</button>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+</div>
+{% endblock %}

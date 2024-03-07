@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- flat_update.html -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Изменить</button>
+</form>
+
+
+{% endblock %}

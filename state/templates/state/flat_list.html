@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+  <button class="btn btn-secondary" onclick="window.location.href='{% url 'flat_list' %}'">Все</button>
+  {% for cat in cats%}
+      <button class="btn btn-secondary" onclick="window.location.href='{% url 'flat_detail' cat.pk %}'">{{cat}}</button>
+  {% endfor %}
+  <button onclick="window.location.href='{% url 'create-flat' %}'">Добавить</button>
+</div>
+{% block flats %}
+<h3>Квартиры</h3>
+<div>
+  <ul>
+<table class="table table-bordered table-light">
+  <thead>
+    <tr>
+      <th>№ квартиры</th>
+      <th>Объект</th>
+      <th>Этаж</th>
+      <th>КВ</th>
+      <th>Дата</th>
+      <th>Статус</th>
+      <th>Цена</th>
+      <th>Клиент</th>
+      <th>Статус</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for flat in flats %}
+      <tr>
+        <td>{{ flat }}</td>
+        <td>{{ flat.category }}</td>
+        <td>{{ flat.floor }}</td>
+        <td>{{ flat.square }}</td>
+        <td>{{ flat.date }}</td>
+        <td>{{ flat.status }}</td>
+        <td>{{ flat.price }} c</td>
+        <td>{{ flat.client }}</td>
+        <td>{{ flat.flat_status }}</td>
+        <td>
+          <button class="btn btn-success" onclick="window.location.href='{% url 'update-flat' flat.pk %}'">Изменить</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" onclick="window.location.href='{% url 'delete-flat' flat.pk %}'">Удалить</button>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+</div>
+{% endblock %}
+{% endblock %}
